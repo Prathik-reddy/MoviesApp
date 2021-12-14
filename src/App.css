@@ -51,7 +51,7 @@
 }
 .banner-title{
   position: absolute;
-  top:45vh;
+  top:40vh;
   left: 5vw;
 }
 .banner-text{
@@ -63,6 +63,49 @@
   margin-right: 5vw;
 }
 
+.movies-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding : 1rem;
+  justify-content: center;
+}
+.movies-card{
+  width:20vw;
+  color: white;
+  position: relative;
+  margin:1rem;
+
+}
+.movies-img{
+  height:40vh;
+  width:20vw;
+}
+.movies-title{
+  position: absolute;
+  top:1rem;
+  color:red;
+  display: flex;
+  width:100%;
+  justify-content: center;
+}
+.movies-text{
+  position: absolute;
+  top:4rem;
+  margin:0.5rem;
+  color:white;
+  height:6rem;
+  overflow: hidden;
+}
+.movies-btn{
+  position: absolute;
+  bottom: 1rem;
+}
+.btn-wrapper{
+  display: flex;
+  width:100%;
+  justify-content: center;
+}
+
 @media screen and (max-width:400px){
   .banner-card{
     height:30vh;
@@ -71,11 +114,21 @@
     height:30vh;
   }
   .banner-title{
-    top:12vh;
+    top:8vh;
     left: 5vvw;
   }
   .banner-text{
-    top:17vh;
+    top:15vh;
     left: 5vvw;
+  }
+  .movies-card{
+    width:40vw;
+    margin:0.5rem;
+  }
+  .movies-btn{
+    width:80%;
+  }
+  .movies-img{
+    width:40vw;
   }
 }
