@@ -83,7 +83,7 @@
 .movies-title{
   position: absolute;
   top:1rem;
-  color:red;
+  color:greenyellow;
   display: flex;
   width:100%;
   justify-content: center;

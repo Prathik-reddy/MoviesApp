@@ -1,23 +1,33 @@
 import React, { Component } from 'react'
-import {movies} from "./getMovies";
-
+// import {movies} from "./getMovies";
+import axios from "axios";
 export default class Movies extends Component {
 
     constructor(){
         super();
         this.state={
             hover:"",
-            para:[1]
+            para:[1],
+            currentPage:1,
+            movies:[],
         }
     }
-
+    async componentDidMount(){
+        const res =await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=f9a0187bf8155bed27d7981ebda9e17d&language=en-US&page=${this.state.currentPage}`)
+        let data =  res.data;
+        console.log(data);
+        this.setState({
+            movies:[...data.results]
+        })
+    }
     render() {
-        let movie = movies.results;
-        console.log(movie);
+        // let movie = movies.results;
+        // console.log(movie);
+        console.log("render");
         return (
             <>
                 {
-                    movie.length===0 ?
+                    this.state.movies.length===0 ?
                     <div className="spinner-border text-primary" role="status">
                     <span className="visually-hidden">Loading...</span>
                     </div>:
@@ -25,12 +35,12 @@ export default class Movies extends Component {
                         <h1 className="text-center"><strong>Trending</strong></h1>
                         <div className="movies-list">
                             {
-                                movie.map((movieObj)=>(
+                                this.state.movies.map((movieObj)=>(
                                     <div className="card movies-card text-center "  onMouseEnter={()=>this.setState({hover:movieObj.id})}
                                     onMouseLeave={()=>this.setState({hover:""})}>
-                                    <img src={movieObj.movie_link} className="card-img-top movies-img" alt="..."/>
-                                        <h3 className="card-title movies-title">{movieObj.movie_title}</h3>
-                                        <p className="card-text movies-text">{movieObj.movie_text}</p>
+                                    {/* <img src={movieObj.backdrop_path} className="card-img-top movies-img" alt="..."/> */}
+                                    <img src={`https://image.tmdb.org/t/p/original${movieObj.backdrop_path}`}  alt={movieObj.title} className="card-img-top movies-img"/>
+                                        <h3 className="card-title movies-title">{movieObj.original_title}</h3>
                                         <div className="btn-wrapper">
                                             {
                                                 this.state.hover===movieObj.id &&
