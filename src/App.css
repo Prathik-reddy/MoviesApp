@@ -109,6 +109,17 @@
   justify-content: center;
 }
 
+/* favourites */
+.favourites-genres{
+  padding: 1rem;
+}
+.favourites-table{
+  padding: 1rem;
+}
+.fav-img{
+  width:3rem;
+}
+
 @media screen and (max-width:400px){
   .fav{
     margin-left:2rem;
