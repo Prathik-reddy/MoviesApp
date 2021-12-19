@@ -36,7 +36,10 @@
     transform: rotate(360deg);
   }
 }
-
+.fav{
+  margin-left:2rem;
+  padding-top: 1rem;
+}
 .banner-card{
   width: 100vw;
   margin-top:1vh;
@@ -107,6 +110,10 @@
 }
 
 @media screen and (max-width:400px){
+  .fav{
+    margin-left:2rem;
+    padding-top: 0.3rem;
+  }
   .banner-card{
     height:30vh;
   }
