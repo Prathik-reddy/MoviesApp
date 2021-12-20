@@ -1,25 +1,52 @@
 import React, { Component } from 'react'
 import {movies} from "./getMovies";
 export default class Favourites extends Component {
+
+    constructor(props) {
+        super();
+        this.state={
+            genres: [],
+            currgen:'All Genres',
+        }
+    }
     render() {
+
         const movie = movies.results;
         console.log("movies : ",movies);
+
+        let genreids = {28:'Action',12:'Adventure',16:'Animation',35:'Comedy',80:'Crime',99:'Documentary',18:'Drama',10751:'Family',14:'Fantasy',36:'History',
+        27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV',53:'Thriller',10752:'War',37:'Western'};
+
+        let temp =[];
+        movie.forEach((moviesObj) => {
+            if(!temp.includes(genreids[moviesObj.genre_ids[0]])){
+               temp.push(genreids[moviesObj.genre_ids[0]]);
+            }
+        })
+        temp.unshift("All Genres");
+        // this.setState({
+        //     genres: [...temp],
+        // })
+
         return (
             <div className="main">
                 <div className="row">
                     <div className="col-3">
                         <ul className="list-group favourites-genres">
-                        <li className="list-group-item">All Genres</li>
-                        <li className="list-group-item">Action</li>
-                        <li className="list-group-item">Action</li>
-                        <li className="list-group-item">Action</li>
-                        <li className="list-group-item">Action</li>
+                        {
+                            temp.map((genre) => (
+                                this.state.currgen == genre ?
+                                <li class="list-group-item" style={{background:'#3f51b5',color:'white',fontWeight:'bold'}} >{genre}</li> :
+                                <li class="list-group-item" style={{background:'white',color:'#3f51b5'}}>{genre}</li>
+                            ))
+                        }
+
                         </ul>
                     </div>
                     <div className="col-9 favourites-table">
                         <div className="row">
-                            <input type="text" className="input-group-text col" />
-                            <input type="number" className="input-group-text col" />
+                            <input type="text" className="input-group-text col"placeholder="Search" />
+                            <input type="number" className="input-group-text col" placeholder="Rows Count" />
                         </div>
                         <div className="row">
                             <table class="table">
@@ -36,13 +63,12 @@ export default class Favourites extends Component {
                                     {
                                         movie.map((movieObj)=>(
                                             <tr>
-                                            <td><img src={movieObj.movie_link}  alt="movie_img" className="fav-img mx-2" />{movieObj.movie_title}</td>
-                                            <td>{movieObj.movie_title}</td>
-                                            <td>{movieObj.genre}</td>
+                                            <td><img src={`https://image.tmdb.org/t/p/original${movieObj.backdrop_path}`} alt={movieObj.title} style={{width:'5rem'}}/> {movieObj.original_title}</td>
+                                            <td>{genreids[movieObj.genre_ids[0]]}</td>
                                             <td>{movieObj.popularity}</td>
-                                            <td>{movieObj.rating}</td>
-                                            <td><button type="button" class="btn btn-danger">Delete</button></td>
-                                            </tr>
+                                            <td>{movieObj.vote_average}</td>
+                                            <td><button type="button" class="btn btn-danger" onClick={()=>this.handleDelete(movieObj.id)}>Delete</button></td>
+                                        </tr>
 
                                         ))
                                     }
