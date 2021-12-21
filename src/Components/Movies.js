@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
+
 export default class Movies extends Component {
 
     constructor(){
@@ -60,6 +61,7 @@ export default class Movies extends Component {
 
         return (
             <>
+                {/* <Banner/> */}
                 {
                     this.state.movies.length===0 ?
                     <div className="spinner-border text-primary" role="status">
