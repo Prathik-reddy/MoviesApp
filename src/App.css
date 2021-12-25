@@ -115,6 +115,7 @@
 }
 .favourites-table{
   padding: 1rem;
+  overflow: auto;
 }
 .fav-img{
   width:3rem;
